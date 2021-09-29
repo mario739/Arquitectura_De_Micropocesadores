@@ -7,7 +7,7 @@
 .global asm_sum64
 .global asm_svc
 .global asm_zeros
-
+.global asm_productoEscalar32
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -50,8 +50,6 @@
 @
 .thumb_func
     asm_sum64:
-
-
         add r0, r1  @ r0 = r0 + r1
         bx lr       @ vuelve adonde fue llamada (especificamente, si "pc"
                     @ es la direccion, en el codigo del programa, de la
@@ -83,6 +81,34 @@
      			subs r1, 1      @--longitud s para operaciones aritmeticas para actualizar los bits de estado
      			bne .loop
     		 bx lr
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_productoEscalar32(uint32_t *vectorInt,uint32_t *vectorOut, uint32_t longitud
+@								, uint32_t escalar);
+@ parametros recibidos
+
+@	r0 :*vector
+@	r1 :*vectorOut
+@ 	r2 :longitud
+@	r3 : escalar
+
+.thumb_func
+    asm_productoEscalar32:
+      	 push {r4}   @Se pushean los registro r5 y r4 para guardar el contexto antes del llamado a la funcion
+	     push {r5}
+    .loopPE32:
+
+		 ldr  r5,[r0],4 @ Se carga en r5 la direccion del puntero r0(vectorInt)
+	     mul  r4,r5,r3   @ Se carga en r4 el producto de r5 y r3
+	     str  r4,[r1],4  @ Se guarda en vectorOut lo del r4
+         subs r2, 1	@ Se decrementar el contador
+	     bne .loopPE32
+
+	     pop  {r5}		@Se reponen los registros para volver al contexto anterior
+	     pop  {r4}
+     bx lr
 
 
 

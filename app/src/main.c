@@ -26,6 +26,17 @@ static void Zeros(void)
 
 }
 
+
+
+static void ProductoEscalar32(void)
+{
+	uint32_t vectorInt[8]={1,2,3,4,5,6,7,8};
+	uint32_t vectorOut[8]={0,0,0,0,0,0,0,0};
+ 	uint32_t escalar=2;
+
+ 	asm_productoEscalar32(vectorInt,vectorOut,8,escalar);
+}
+
 // Segun la configuracion realizada en Inicio(), este handler de interrupcion
 // se ejecutara cada 1 milisegundo.
 void SysTick_Handler (void)
@@ -155,7 +166,8 @@ noreturn void LoopInfinito (void)
 int main (void)
 {
     Inicio ();
-    Zeros();
+    //Zeros();
+    ProductoEscalar32();
     //Suma ();
 
     //PrivilegiosSVC ();
