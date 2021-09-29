@@ -34,6 +34,12 @@ static void Suma (void)
     const uint32_t A = 20;
     const uint32_t B = 30;
 
+    const uint64_t A64=0xAABBCCDDEEFF0011;
+    const uint64_t B64=0x2233445566778899;
+
+    const uint64_t SumResult64_C=c_sum64(A64,B64);
+    const uint64_t SumResult64_Asm=asm_sum64(A64,B64);
+
     const uint32_t SumResult_C = c_sum (A, B);
     const uint32_t SumResult_Asm = asm_sum (A, B);
 
@@ -110,12 +116,7 @@ static void PrivilegiosSVC (void)
     // Fin del ejemplo de SVC
 }
 
-static void Zeros(void)
-{
 
-    uint32_t vector[8]={(uint32_t)-1,(uint32_t)-2,(uint32_t)-3,(uint32_t)-4,(uint32_t)-5,(uint32_t)-6,(uint32_t)-7,(uint32_t)-8};
-    asm_zero(vector,8);
-}
 
 // Handler de la interrupcion "SVC" (Supervisor Call).
 // Usado por el ejemplo "EjemploPrivilegiosSVC".
@@ -148,14 +149,13 @@ noreturn void LoopInfinito (void)
 
 int main (void)
 {
-	Zeros();
-    //Inicio ();
+    Inicio ();
 
-   // Suma ();
+    Suma ();
 
     //PrivilegiosSVC ();
 
     //LlamandoAMalloc ();
-//
+
     //LoopInfinito ();
 }
