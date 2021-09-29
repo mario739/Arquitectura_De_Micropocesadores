@@ -19,7 +19,12 @@ static void Inicio (void)
     SystemCoreClockUpdate ();
     SysTick_Config (SystemCoreClock / 1000);
 }
+static void Zeros(void)
+{
+    uint32_t vector[8]={(uint32_t)-1,(uint32_t)-2,(uint32_t)-3,(uint32_t)-4,(uint32_t)-5,(uint32_t)-6,(uint32_t)-7,(uint32_t)-8};
+    asm_zeros(vector,8);
 
+}
 
 // Segun la configuracion realizada en Inicio(), este handler de interrupcion
 // se ejecutara cada 1 milisegundo.
@@ -34,7 +39,7 @@ static void Suma (void)
     const uint32_t A = 20;
     const uint32_t B = 30;
 
-    const uint64_t A64=0xAABBCCDDEEFF0011;
+    const uint64_t A64=0x1111111111111111;
     const uint64_t B64=0x2233445566778899;
 
     const uint64_t SumResult64_C=c_sum64(A64,B64);
@@ -150,12 +155,12 @@ noreturn void LoopInfinito (void)
 int main (void)
 {
     Inicio ();
-
-    Suma ();
+    Zeros();
+    //Suma ();
 
     //PrivilegiosSVC ();
 
     //LlamandoAMalloc ();
 
-    //LoopInfinito ();
+    LoopInfinito ();
 }

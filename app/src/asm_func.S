@@ -6,7 +6,7 @@
 .global asm_sum
 .global asm_sum64
 .global asm_svc
-
+.global asm_zeros
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -50,6 +50,8 @@
 @
 .thumb_func
     asm_sum64:
+
+
         add r0, r1  @ r0 = r0 + r1
         bx lr       @ vuelve adonde fue llamada (especificamente, si "pc"
                     @ es la direccion, en el codigo del programa, de la
@@ -62,6 +64,29 @@
         @ mov pc,lr
         @ bx lr
         @ push {lr} ... pop {pc}
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_zeros (uint32_t * vector ,uint32_t longitud);
+@
+@ Parametros recibidos:
+@   r0: * vector
+@   r1: longitud
+
+.thumb_func
+    asm_zeros:
+        @ Registros usados
+	    @ r2: valor cero
+		mov r2, 0 @ constante cero
+  			.loop:
+     			str r2,[r0], 4 @sizeof(uint32_t) ==4, *vector++=r2
+     			subs r1, 1      @--longitud s para operaciones aritmeticas para actualizar los bits de estado
+     			bne .loop
+    		 bx lr
+
+
+
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
