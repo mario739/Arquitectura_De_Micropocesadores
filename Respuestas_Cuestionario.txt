@@ -22,3 +22,8 @@ de proteccion de memoria, etc. Tambien tienen funcionalidades que nos permiten c
 
 R. Por que el set de instrucciones Thumb son instrucciones de 16 bits, esto nos permite cargar  dos instrucciones en un palabra de 32 bits mejorando 
 la densidad de codigo. 
+
+3.¿Qué entiende por arquitectura load-store? ¿Qué tipo de instrucciones no posee este tipo de arquitectura?
+
+R. Las instrucciones no trabajan directamente sobre la memoria, lo que se hace es primero cargar el dato a un registro usando algunas 
+instrucciones(ldr) y se opera sobre el mismo, luego se lo vuelve a cargar a la memori con otras instrucciones(str).
