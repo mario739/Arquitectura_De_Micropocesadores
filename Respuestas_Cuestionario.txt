@@ -1,0 +1,10 @@
+Preguntas orientadoras
+
+1. Describa brevemente los diferentes perfiles de familias de microprocesadores/microcontroladores de
+ARM. Explique algunas de sus diferencias.
+
+R.  Hay tres perfiles de microprocesadores/microcontroladores A,R Y M.
+Los cortex A son microprocesadores de aplicacion, ejecutan un sistemas operativos y estan diseñados no para realizar una sola tarea sino varias.
+Los cortex R son microprocesadores que estan orientados a aplicaciones de tiempo real, donde el sistema nos garantiza un tiempo de respuesta determinista 
+siempre sera el mismo por ejemplo 1 ms, se utilizan para aplicaciones criticas.  
+Los cortex M son microcontroladores de uso masivo estan diseñados para sistemas de bajo consumo y bajo costo.
