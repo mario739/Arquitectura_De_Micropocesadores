@@ -37,3 +37,15 @@ memorias externas, SRAM, etc.
 
 R. Es un bit en el registro del stack pointer que nos permite elegir si se esta utilizando el MSP o el PSP esto se utiliza mucho 
 cuando se implementa un sistema operativo por que permite utilizar el MSP para el sistema y el PSP para las tareas.
+
+6. Describa los diferentes modos de privilegio y operación del Cortex M, sus relaciones y como se conmuta de uno al otro. 
+Describa un ejemplo en el que se pasa del modo privilegiado a no priviligiado y nuevamente a privilegiado.
+
+R. Existen 2 modos cuando se programa en bare metal que son modo privilegiado este modo es donde arranca el microcontrolador tiene la facultad de modificar
+todos los registros del sistema y el modo handler que es el modo que se pone el micro cuando se activa un interrupcion tambien tiene privilegios de modificar
+todos lo registros.
+
+Cuando usamos un sistema operativo de tiempo real como puede ser un FreeRTOS existen 3 modos modo privilegiado, handler y modo no privilegiado los dos 
+primeros modos son igual que el anterior pero el modo no privilegiado lo utilizan las tareas de sistema operativo las cuales no puede modificar todos los 
+registros del sistema. Por ejemplos el sistema inicia siempre en modo privilegiado luego el sistema operativo llama al scheduler en modo handler este pone
+ al sistema  en modo no privilegiado procesando una tarea  de la cual no se puede volver al modo privilegiado sino es atraves de un interrupción.
