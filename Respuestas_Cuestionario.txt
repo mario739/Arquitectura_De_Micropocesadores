@@ -8,3 +8,12 @@ Los cortex A son microprocesadores de aplicacion, ejecutan un sistemas operativo
 Los cortex R son microprocesadores que estan orientados a aplicaciones de tiempo real, donde el sistema nos garantiza un tiempo de respuesta determinista 
 siempre sera el mismo por ejemplo 1 ms, se utilizan para aplicaciones criticas.  
 Los cortex M son microcontroladores de uso masivo estan diseñados para sistemas de bajo consumo y bajo costo.
+
+
+Cortex M
+
+1.Describa brevemente las diferencias entre las familias de procesadores Cortex MO, M3 Y M4.
+
+R. Los cortex M0 son bastante simple tiene un sed de instrucciones reducido, son muy buenos para aplicaciones simples y de bajo consumo y costo.
+Los cortex M3/M4/M7 son microcontroladores con mayor performance, agregan otras funcionalidades como procesamiento digital de señales, unidades 
+de proteccion de memoria, etc. Tambien tienen funcionalidades que nos permiten cargan un sistema operativo en el microcontrolador. 
