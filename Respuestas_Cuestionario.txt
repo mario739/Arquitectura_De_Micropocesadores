@@ -32,3 +32,8 @@ instrucciones(ldr) y se opera sobre el mismo, luego se lo vuelve a cargar a la m
 
 R. El mapa de memoria es plano de 4 GB de espacio, en todo este espacio tenemos las particiones de la memoria que corresponden a los perifericos, 
 memorias externas, SRAM, etc.
+
+5. ¿Qué ventajas presenta el uso de los “shadowed pointers” del PSP y el MSP?
+
+R. Es un bit en el registro del stack pointer que nos permite elegir si se esta utilizando el MSP o el PSP esto se utiliza mucho 
+cuando se implementa un sistema operativo por que permite utilizar el MSP para el sistema y el PSP para las tareas.
