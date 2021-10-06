@@ -42,6 +42,26 @@ static void ProductoEscalar32(void)
  	asm_productoEscalar32(asm_vectorInt,asm_vectorOut,8,escalar);
 }
 
+
+static void ProductoEscalar16(void)
+{
+	uint16_t asm_vectorInt[8]={1,2,3,4,5,6,7,8};
+	uint16_t asm_vectorOut[8]={0,0,0,0,0,0,0,0};
+
+	uint16_t c_vectorInt[8]={2,4,6,8,10,12,14,16};
+	uint16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
+
+ 	uint16_t escalar=2;
+
+ 	c_productoEscalar16(c_vectorInt,c_vectorOut,8,escalar);
+ 	asm_productoEscalar16(asm_vectorInt,asm_vectorOut,8,escalar);
+}
+
+
+
+
+
+
 // Segun la configuracion realizada en Inicio(), este handler de interrupcion
 // se ejecutara cada 1 milisegundo.
 void SysTick_Handler (void)
@@ -172,7 +192,9 @@ int main (void)
 {
     Inicio ();
     //Zeros();
-    ProductoEscalar32();
+    //ProductoEscalar32();
+    ProductoEscalar16();
+
     //Suma ();
 
     //PrivilegiosSVC ();
