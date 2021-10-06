@@ -96,22 +96,18 @@
 
 .thumb_func
     asm_productoEscalar32:
-      	 push {r4}   @Se pushean los registro r5 y r4 para guardar el contexto antes del llamado a la funcion
-	     push {r5}
+      	 push {r4}   			@Se pushean el registro r4 para guardar el contexto antes del llamado a la funcion
+
     .loopPE32:
 
-		 ldr  r5,[r0],4 @ Se carga en r5 la direccion del puntero r0(vectorInt)
-	     mul  r4,r5,r3   @ Se carga en r4 el producto de r5 y r3
-	     str  r4,[r1],4  @ Se guarda en vectorOut lo del r4
-         subs r2, 1	@ Se decrementar el contador
-	     bne .loopPE32
-
-	     pop  {r5}		@Se reponen los registros para volver al contexto anterior
-	     pop  {r4}
+		 ldr  r4,[r0],4		    @Se carga en el registro r4 el primer valor del vector de entrada y luego se le suma 4
+		 					    @	para moverse cuatro posiciones
+	     mul  r4,r3   			@ Se multiplica el valor del registro r4 con el escalar que se encuentra en r3
+	     str  r4,[r1],4 	    @ Se guarda en vectorOut lo del r4
+         subs r2, 1				@ Se decrementar el contador
+	     bne .loopPE32			@ Ejucucion condicional
+	     pop  {r4}				@ Se reponen los registros para volver al contexto anterior
      bx lr
-
-
-
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

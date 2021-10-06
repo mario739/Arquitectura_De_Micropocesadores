@@ -19,3 +19,11 @@ void c_zeros (uint32_t * vector ,uint32_t longitud)
 		vector[i] = 0;
 	}
 }
+
+void c_productoEscalar32(uint32_t vectorInt[], uint32_t vectorOut[], uint32_t longitud, uint32_t escalar)
+{
+    for (uint32_t i = 0; i < longitud; i++)
+    {
+    	vectorOut[i] = vectorInt[i]*escalar;
+    }
+}

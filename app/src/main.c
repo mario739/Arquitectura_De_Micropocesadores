@@ -30,11 +30,16 @@ static void Zeros(void)
 
 static void ProductoEscalar32(void)
 {
-	uint32_t vectorInt[8]={1,2,3,4,5,6,7,8};
-	uint32_t vectorOut[8]={0,0,0,0,0,0,0,0};
+	uint32_t asm_vectorInt[8]={1,2,3,4,5,6,7,8};
+	uint32_t asm_vectorOut[8]={0,0,0,0,0,0,0,0};
+
+	uint32_t c_vectorInt[8]={6,5,3,2,6,7,8,9};
+	uint32_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
+
  	uint32_t escalar=2;
 
- 	asm_productoEscalar32(vectorInt,vectorOut,8,escalar);
+ 	c_productoEscalar32(c_vectorInt, c_vectorOut,8,escalar);
+ 	asm_productoEscalar32(asm_vectorInt,asm_vectorOut,8,escalar);
 }
 
 // Segun la configuracion realizada en Inicio(), este handler de interrupcion
