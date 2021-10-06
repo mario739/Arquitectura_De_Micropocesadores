@@ -49,3 +49,9 @@ Cuando usamos un sistema operativo de tiempo real como puede ser un FreeRTOS exi
 primeros modos son igual que el anterior pero el modo no privilegiado lo utilizan las tareas de sistema operativo las cuales no puede modificar todos los 
 registros del sistema. Por ejemplos el sistema inicia siempre en modo privilegiado luego el sistema operativo llama al scheduler en modo handler este pone
  al sistema  en modo no privilegiado procesando una tarea  de la cual no se puede volver al modo privilegiado sino es atraves de un interrupción.
+
+
+8. ¿Qué ventajas presenta el uso de instrucciones de ejecución condicional (IT)? Dé un ejemplo 
+
+R. La ventaja es el performans. Con un arquitectura implementada con pipeline lo que se quiere lograr es que las instrucciones fluyan y que el puntero de programa siempre avance, la ejecucion 
+condicional es una manera de asignar un valor u otro a la misma variable sin tener que hacer un salto. Ej. MOVEQ r2,r3
