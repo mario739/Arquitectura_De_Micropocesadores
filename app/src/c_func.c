@@ -35,3 +35,15 @@ void c_productoEscalar16(uint16_t *vectorInt, uint16_t *vectorOut, uint32_t long
     	vectorOut[i] = vectorInt[i]*escalar;
     }
 }
+
+void c_productoEscalar12 (uint16_t* vectorInt, uint16_t* vectorOut, uint32_t longitud, uint16_t escalar)
+{
+
+	for(uint32_t i = 0 ; i < longitud ; i++)
+	{
+		vectorOut[i] = vectorInt[i] * escalar;
+		if (vectorOut[i] > 4095)
+			vectorOut[i] = 4095;
+    }
+
+}

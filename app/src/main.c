@@ -58,7 +58,20 @@ static void ProductoEscalar16(void)
 }
 
 
+static void ProductoEscalarConSaturacion12(void)
+{
+	uint16_t asm_vectorInt[8]={1,2,3,4,5,6,7,8};
+	uint16_t asm_vectorOut[8]={0,0,0,0,0,0,0,0};
 
+	uint16_t c_vectorInt[8]={2,4,6,8,10,12,14,16};
+    uint16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
+
+
+	uint16_t escalar=1500;
+
+	//c_productoEscalar12 (c_vectorInt,c_vectorOut,8,escalar);
+    asm_productoEscalar12_FNS(asm_vectorInt,asm_vectorOut,8,escalar);
+}
 
 
 
@@ -193,8 +206,8 @@ int main (void)
     Inicio ();
     //Zeros();
     //ProductoEscalar32();
-    ProductoEscalar16();
-
+    //ProductoEscalar16();
+    ProductoEscalarConSaturacion12();
     //Suma ();
 
     //PrivilegiosSVC ();
