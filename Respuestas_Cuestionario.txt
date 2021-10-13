@@ -55,3 +55,8 @@ registros del sistema. Por ejemplos el sistema inicia siempre en modo privilegia
 
 R. La ventaja es el performans. Con un arquitectura implementada con pipeline lo que se quiere lograr es que las instrucciones fluyan y que el puntero de programa siempre avance, la ejecucion 
 condicional es una manera de asignar un valor u otro a la misma variable sin tener que hacer un salto. Ej. MOVEQ r2,r3
+
+9. Describa brevemente las excepciones más prioritarias (reset, NMI, Hardfault).
+
+R. Reset es lo primero que corre el microcontrolador al inicializar, HMI es la excepcion que no se puede ignorar o no es enmascarable por que es la excepcion del whachdog y la excepcion  HardFault son lo errores de 
+hardware o lo de acceso a memoria.
