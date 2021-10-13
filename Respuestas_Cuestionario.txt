@@ -60,3 +60,11 @@ condicional es una manera de asignar un valor u otro a la misma variable sin ten
 
 R. Reset es lo primero que corre el microcontrolador al inicializar, HMI es la excepcion que no se puede ignorar o no es enmascarable por que es la excepcion del whachdog y la excepcion  HardFault son lo errores de 
 hardware o lo de acceso a memoria.
+
+10. Describa las funciones principales de la pila. ¿Cómo resuelve la arquitectura el llamado a funciones y su retorno?
+
+R.La pila es un area de memoria de la sram, su funcion principal es poder salvaguardar el estado de los registros del cpu del contexto que se esta ejecutando antes 
+de saltar a una funcion y cambiar de contexto, todo esto se hace para no destruir el contexto de donde se salta para que al volver no se rompa el sistema.
+
+Lo que hace el microcontrolador cuando se llama a una funcion es utilizar sus registros de propositor general para pasar los parametros a la funcion 
+utilizando los registros r0-r3 tambien guarda la dirreccion de retorno en el registro ldr para poder volver de la funcion de donde se salto.  
