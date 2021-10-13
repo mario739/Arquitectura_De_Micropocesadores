@@ -93,7 +93,12 @@ static void filtroVentana10(void)
 	    c_filtroVentana10(vectorIn, vectorOut, longitud);
 }
 
+static void PosicionMaximo(void)
+{
+	int32_t c_vectorInt[8]={2,4,6,488,51,56,88,144};
 
+	uint32_t posicion= c_max(c_vectorInt, 8);
+}
 
 
 
@@ -231,7 +236,9 @@ int main (void)
     //ProductoEscalar16();
     //ProductoEscalarConSaturacion12();
    // Empaquetar32a16();
-    filtroVentana10();
+    //filtroVentana10();
+
+    PosicionMaximo();
     //Suma ();
 
     //PrivilegiosSVC ();

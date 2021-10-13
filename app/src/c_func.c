@@ -77,6 +77,26 @@ void c_filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longi
 	        acumulador = 0;
 		}
 }
+//7) Realizar una función que reciba un vector de números signados de 32 bits y devuelva la posición
+//del máximo del vector.
+
+
+int32_t c_max (int32_t * vectorInt, uint32_t longitud)
+{
+	    int32_t maximo = vectorInt[0];
+	    uint32_t posicion;
+	    uint32_t i;
+	    for (i = 1; i < longitud; i++)
+	    {
+	    	if (vectorInt[i] > maximo)
+	    	{
+	            maximo = vectorInt[i];
+	            posicion=i;
+	        }
+	    }
+	    return posicion;
+
+}
 
 
 
