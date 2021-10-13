@@ -47,3 +47,11 @@ void c_productoEscalar12 (uint16_t* vectorInt, uint16_t* vectorOut, uint32_t lon
     }
 
 }
+void c_pack32to16 (int32_t * vectorInt, int16_t *vectorOut, uint32_t longitud)
+{
+
+	for(uint32_t i = 0 ; i < longitud ; i++)
+		{
+			vectorOut[i]=vectorInt[i]>>16;
+		}
+}

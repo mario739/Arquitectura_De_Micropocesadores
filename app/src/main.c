@@ -72,7 +72,19 @@ static void ProductoEscalarConSaturacion12(void)
 	//c_productoEscalar12 (c_vectorInt,c_vectorOut,8,escalar);
    // asm_productoEscalar12_FNS(asm_vectorInt,asm_vectorOut,8,escalar);
     asm_productoEscalar12_FS(asm_vectorInt,asm_vectorOut,8,escalar);
+
 }
+
+static void Empaquetar32a16(void)
+{
+	int32_t c_vectorInt[8]={2,4,6,8,196608,65536,65537,16};
+	int16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
+
+	c_pack32to16 (c_vectorInt,c_vectorOut,8);
+
+}
+
+
 
 
 
@@ -208,7 +220,8 @@ int main (void)
     //Zeros();
     //ProductoEscalar32();
     //ProductoEscalar16();
-    ProductoEscalarConSaturacion12();
+    //ProductoEscalarConSaturacion12();
+    Empaquetar32a16();
     //Suma ();
 
     //PrivilegiosSVC ();
