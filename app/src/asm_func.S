@@ -10,6 +10,9 @@
 .global asm_productoEscalar32
 .global asm_productoEscalar16
 .global asm_productoEscalar12_FNS
+.global asm_productoEscalar12_FS
+
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   uint32_t asmSum (uint32_t firstOperand, uint32_t secondOperand)
@@ -139,7 +142,7 @@
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
-@   void asm_productoEscalar12 (uint16_t* vectorInt, uint16_t* vectorOut, uint32_t longitud, uint16_t escalar)
+@   void asm_productoEscalar12_FNS (uint16_t* vectorInt, uint16_t* vectorOut, uint32_t longitud, uint16_t escalar)
 @
 @ Parametros recibidos:
 @   r0: * vectorInt
@@ -148,6 +151,7 @@
 @   r3: escalar
 @ Parametros de función
 @   r4: Registro usado para hacer las operaciones de load-store
+@	r5: Registro usado para hacer las operaciones de load-store
 @
 .thumb_func
 		asm_productoEscalar12_FNS:
@@ -169,6 +173,36 @@
 		pop {r4} 					@ Se restauran los valores de r4 y r5
 		pop {r5}
 		bx lr
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_productoEscalar12_FS (uint16_t* vectorInt, uint16_t* vectorOut, uint32_t longitud, uint16_t escalar)
+@
+@ Parametros recibidos:
+@   r0: * vectorInt
+@   r1: * vectorOut
+@   r2: longitud
+@   r3: escalar
+@ Parametros de función
+@   r4: Registro usado para hacer las operaciones de load-store
+@	r5: Registro usado para hacer las operaciones de load-store
+@
+.thumb_func
+		asm_productoEscalar12_FS:
+
+		push {r4}				@ Se guarda el registro r4  para mantener el contexto anterior intacto
+   		   .loopPE12FS:
+ 				ldrh r4,[r0], 2  	@ Se carga en r4 lo apuntado por r0 es pone sufijo h por que es media palabra
+				mul r4, r3		 	@ Se multiplica el escalar por el datos en r4 y se almacena en r4
+				usat r4,12,r4       @ Si el valor en el registro r4 es mayor 12bits coloca 4095 en r4
+				strh r4, [r1], 2    @ Se cargar el dato de r4 a la posicion de memoria que apunta en r1 se pone h
+        							@			para especificar que es media palabra y se avanza 2 bytes en el vector
+				subs r2, 1  		@ Se decrementa el registro r2 que es la longitud
+				bne .loopPE12FS
+		pop {r4} 					@ Se restauran los valores de r4 y r5
+		bx lr
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":

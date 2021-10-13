@@ -67,10 +67,11 @@ static void ProductoEscalarConSaturacion12(void)
     uint16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
 
 
-	uint16_t escalar=1500;
+	uint16_t escalar=819;
 
 	//c_productoEscalar12 (c_vectorInt,c_vectorOut,8,escalar);
-    asm_productoEscalar12_FNS(asm_vectorInt,asm_vectorOut,8,escalar);
+   // asm_productoEscalar12_FNS(asm_vectorInt,asm_vectorOut,8,escalar);
+    asm_productoEscalar12_FS(asm_vectorInt,asm_vectorOut,8,escalar);
 }
 
 
