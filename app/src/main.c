@@ -5,6 +5,23 @@
 #include <stdlib.h>
 #include <stdnoreturn.h>
 
+#define DWT_CONTROL             (*((volatile uint32_t*)0xE0001000))
+#define DWT_CYCCNT              (*((volatile uint32_t*)0xE0001004))
+#define DWT_CYCCNTENA_BIT       (1UL<<0)
+#define DWT_DEMCR               (*((volatile uint32_t*)0xE000EDFC))
+
+#define EnableCycleCounter()    DWT_CONTROL |= DWT_CYCCNTENA_BIT
+#define GetCycleCounter()       DWT_CYCCNT
+#define ResetCycleCounter()     DWT_CYCCNT = 0
+#define DisableCycleCounter()   DWT_CONTROL &= ~DWT_CYCCNTENA_BIT
+#define EnableAllDwt()          DWT_DEMCR |= 1<<24
+
+
+
+
+
+
+
 
 // Variable que se incrementa cada vez que se llama al handler de interrupcion
 // del SYSTICK.
@@ -18,10 +35,13 @@ static void Inicio (void)
     Board_Init ();
     SystemCoreClockUpdate ();
     SysTick_Config (SystemCoreClock / 1000);
+    EnableAllDwt();
+    EnableCycleCounter();
 }
 static void Zeros(void)
 {
-    uint32_t vector[8]={(uint32_t)-1,(uint32_t)-2,(uint32_t)-3,(uint32_t)-4,(uint32_t)-5,(uint32_t)-6,(uint32_t)-7,(uint32_t)-8};
+
+	uint32_t vector[8]={(uint32_t)-1,(uint32_t)-2,(uint32_t)-3,(uint32_t)-4,(uint32_t)-5,(uint32_t)-6,(uint32_t)-7,(uint32_t)-8};
     asm_zeros(vector,8);
 
 }
@@ -38,8 +58,22 @@ static void ProductoEscalar32(void)
 
  	uint32_t escalar=2;
 
+ 	char tramadesalida[80];
+ 	uint32_t contadordeciclos=0 ;
+
+ 	ResetCycleCounter();
  	c_productoEscalar32(c_vectorInt, c_vectorOut,8,escalar);
+ 	contadordeciclos = GetCycleCounter();
+ 	sprintf(tramadesalida, "ciclos c_productoEscalar32: %d\r\n", contadordeciclos);
+ 	Board_UARTPutSTR(tramadesalida);
+
+
+
+ 	ResetCycleCounter();
  	asm_productoEscalar32(asm_vectorInt,asm_vectorOut,8,escalar);
+ 	contadordeciclos = GetCycleCounter();
+ 	sprintf(tramadesalida, "ciclos c_productoEscalar32: %d\r\n", contadordeciclos);
+ 	Board_UARTPutSTR(tramadesalida);
 }
 
 
@@ -52,9 +86,21 @@ static void ProductoEscalar16(void)
 	uint16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
 
  	uint16_t escalar=2;
+ 	char tramadesalida[80];
+ 	uint32_t contadordeciclos=0;
 
- 	c_productoEscalar16(c_vectorInt,c_vectorOut,8,escalar);
- 	asm_productoEscalar16(asm_vectorInt,asm_vectorOut,8,escalar);
+ 	 	ResetCycleCounter();
+ 	 	c_productoEscalar16(c_vectorInt,c_vectorOut,8,escalar);
+ 	 	contadordeciclos = GetCycleCounter();
+ 	 	sprintf(tramadesalida, "ciclos c_productoEscalar16: %d\r\n", contadordeciclos);
+ 	 	Board_UARTPutSTR(tramadesalida);
+
+ 	 	ResetCycleCounter();
+ 	 	asm_productoEscalar16(asm_vectorInt,asm_vectorOut,8,escalar);
+ 	 	contadordeciclos = GetCycleCounter();
+ 	 	sprintf(tramadesalida, "ciclos c_productoEscalar16: %d\r\n", contadordeciclos);
+ 	 	Board_UARTPutSTR(tramadesalida);
+
 }
 
 
@@ -65,13 +111,30 @@ static void ProductoEscalarConSaturacion12(void)
 
 	uint16_t c_vectorInt[8]={2,4,6,8,10,12,14,16};
     uint16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
-
-
 	uint16_t escalar=819;
 
-	//c_productoEscalar12 (c_vectorInt,c_vectorOut,8,escalar);
-   // asm_productoEscalar12_FNS(asm_vectorInt,asm_vectorOut,8,escalar);
-    asm_productoEscalar12_FS(asm_vectorInt,asm_vectorOut,8,escalar);
+	char tramadesalida[80];
+	uint32_t contadordeciclos=0;
+
+
+	ResetCycleCounter();
+	c_productoEscalar12 (c_vectorInt,c_vectorOut,8,escalar);
+	contadordeciclos = GetCycleCounter();
+	sprintf(tramadesalida, "ciclos c_productoEscalar12: %d\r\n", contadordeciclos);
+	Board_UARTPutSTR(tramadesalida);
+
+	ResetCycleCounter();
+	asm_productoEscalar12_FNS(asm_vectorInt,asm_vectorOut,8,escalar);
+	contadordeciclos = GetCycleCounter();
+	sprintf(tramadesalida, "ciclos asm_productoEscalar12_FNS: %d\r\n", contadordeciclos);
+	Board_UARTPutSTR(tramadesalida);
+
+	ResetCycleCounter();
+	asm_productoEscalar12_FS(asm_vectorInt,asm_vectorOut,8,escalar);
+	contadordeciclos = GetCycleCounter();
+	sprintf(tramadesalida, "ciclos asm_productoEscalar12_FS: %d\r\n", contadordeciclos);
+	Board_UARTPutSTR(tramadesalida);
+
 
 }
 
@@ -79,9 +142,23 @@ static void Empaquetar32a16(void)
 {
 	int32_t c_vectorInt[8]={2,4,6,8,-196608,-65536,65537,16};
 	int16_t c_vectorOut[8]={0,0,0,0,0,0,0,0};
+	char tramadesalida[80];
+	uint32_t contadordeciclos=0;
 
-	//c_pack32to16 (c_vectorInt,c_vectorOut,8);
+
+
+	ResetCycleCounter();
+	c_pack32to16 (c_vectorInt,c_vectorOut,8);
+	contadordeciclos = GetCycleCounter();
+	sprintf(tramadesalida, "ciclos c_pack32to16: %d\r\n", contadordeciclos);
+	Board_UARTPutSTR(tramadesalida);
+
+	ResetCycleCounter();
 	asm_pack32to16(c_vectorInt,c_vectorOut,8);
+	contadordeciclos = GetCycleCounter();
+	sprintf(tramadesalida, "ciclos asm_pack32to16: %d\r\n", contadordeciclos);
+	Board_UARTPutSTR(tramadesalida);
+
 
 }
 
@@ -90,14 +167,36 @@ static void filtroVentana10(void)
 	    u_int32_t longitud =20;
 	    u_int16_t vectorIn[20] = {1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0};
 	    u_int16_t vectorOut[20] = {};
+	    char tramadesalida[80];
+	    uint32_t contadordeciclos=0;
+
+
+	    ResetCycleCounter();
 	    c_filtroVentana10(vectorIn, vectorOut, longitud);
+	    contadordeciclos = GetCycleCounter();
+	    sprintf(tramadesalida, "c_filtroVentana10 %d\r\n", contadordeciclos);
+	    Board_UARTPutSTR(tramadesalida);
+
 }
 
 static void PosicionMaximo(void)
 {
 	int32_t c_vectorInt[8]={2,4,6,488,51,56,88,144};
+	char tramadesalida[80];
+    uint32_t contadordeciclos=0;
 
-	uint32_t posicion= c_max(c_vectorInt, 8);
+
+    ResetCycleCounter();
+    uint32_t posicion= c_max(c_vectorInt, 8);
+    contadordeciclos = GetCycleCounter();
+    sprintf(tramadesalida, "c_filtroVentana10 %d\r\n", contadordeciclos);
+    Board_UARTPutSTR(tramadesalida);
+
+
+
+	//uint32_t posicion= asm_max(c_vectorInt, 8);
+
+
 }
 
 
@@ -232,13 +331,13 @@ int main (void)
 {
     Inicio ();
     //Zeros();
-    //ProductoEscalar32();
+    ProductoEscalar32();
     //ProductoEscalar16();
     //ProductoEscalarConSaturacion12();
    // Empaquetar32a16();
     //filtroVentana10();
 
-    PosicionMaximo();
+    //PosicionMaximo();
     //Suma ();
 
     //PrivilegiosSVC ();
