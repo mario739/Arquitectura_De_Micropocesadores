@@ -11,7 +11,7 @@
 .global asm_productoEscalar16
 .global asm_productoEscalar12_FNS
 .global asm_productoEscalar12_FS
-
+.global asm_pack32to16
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
@@ -200,8 +200,37 @@
         							@			para especificar que es media palabra y se avanza 2 bytes en el vector
 				subs r2, 1  		@ Se decrementa el registro r2 que es la longitud
 				bne .loopPE12FS
-		pop {r4} 					@ Se restauran los valores de r4 y r5
+		pop {r4} 					@ Se restauran los valores de r4
 		bx lr
+
+
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   void asm_pack32to16 (int32_t * vectorInt, int16_t *vectorOut, uint32_t longitud)
+@
+@ Parametros recibidos:
+@   r0: * vectorInt
+@   r1: * vectorOut
+@   r2: longitud
+@ Parametros de función
+@   r4: Registro usado para hacer las operaciones de load-store
+
+.thumb_func
+		asm_pack32to16:
+
+		push {r4}					@ Se guarda el registro r4  para mantener el contexto anterior intacto
+   		   .loopPack32to16:
+ 				ldr r4,[r0],4  		@ Se carga en r4 lo apuntado por r0
+				ssat r4,#16,r4      @ Se satura a 16bits con signo
+				strh r4,[r1],2      @ Se cargar el dato de r4 a la posicion de memoria que apunta en r1 se pone h
+    								@			para especificar que es media palabra y se avanza 2 bytes en el vector
+				subs r2, 1  		@ Se decrementa el registro r2 que es la longitud
+				bne .loopPack32to16
+		pop {r4} 					@ Se restauran los valores de r4
+		bx lr
+
+
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

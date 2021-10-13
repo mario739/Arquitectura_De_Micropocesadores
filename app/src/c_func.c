@@ -55,3 +55,4 @@ void c_pack32to16 (int32_t * vectorInt, int16_t *vectorOut, uint32_t longitud)
 			vectorOut[i]=vectorInt[i]>>16;
 		}
 }
+

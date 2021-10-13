@@ -10,6 +10,6 @@ extern void asm_productoEscalar32(uint32_t *vectorInt,uint32_t *vectorOut,uint32
 extern void asm_productoEscalar16(uint16_t *vectorInt,uint16_t *vectorOut,uint32_t longitud,uint16_t escalar);
 extern void asm_productoEscalar12_FNS(uint16_t *vectorInt,uint16_t *vectorOut,uint32_t longitud,uint16_t escalar);
 extern void asm_productoEscalar12_FS(uint16_t *vectorInt,uint16_t *vectorOut,uint32_t longitud,uint16_t escalar);
-
+extern void asm_pack32to16 (int32_t * vectorInt, int16_t *vectorOut, uint32_t longitud);
 extern void asm_svc (void);
 
