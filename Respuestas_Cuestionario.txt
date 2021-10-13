@@ -68,3 +68,11 @@ de saltar a una funcion y cambiar de contexto, todo esto se hace para no destrui
 
 Lo que hace el microcontrolador cuando se llama a una funcion es utilizar sus registros de propositor general para pasar los parametros a la funcion 
 utilizando los registros r0-r3 tambien guarda la dirreccion de retorno en el registro ldr para poder volver de la funcion de donde se salto.  
+
+
+12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
+
+R.Los core peripherals son los perifericos del core de ARM (NVIC,Systick,etc),estos son pertenecientes a la IP de ARM Ylos demas perifericos ya son los que adicisionan los fabricantes a su diseño
+de su micrcontrolador por ejemplo UART,SPI,I2C,etc.
+
+
