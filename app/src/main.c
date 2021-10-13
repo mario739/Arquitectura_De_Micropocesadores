@@ -85,6 +85,14 @@ static void Empaquetar32a16(void)
 
 }
 
+static void filtroVentana10(void)
+{
+	    u_int32_t longitud =20;
+	    u_int16_t vectorIn[20] = {1,2,3,4,5,6,7,8,9,0,1,2,3,4,5,6,7,8,9,0};
+	    u_int16_t vectorOut[20] = {};
+	    c_filtroVentana10(vectorIn, vectorOut, longitud);
+}
+
 
 
 
@@ -222,7 +230,8 @@ int main (void)
     //ProductoEscalar32();
     //ProductoEscalar16();
     //ProductoEscalarConSaturacion12();
-    Empaquetar32a16();
+   // Empaquetar32a16();
+    filtroVentana10();
     //Suma ();
 
     //PrivilegiosSVC ();

@@ -55,4 +55,28 @@ void c_pack32to16 (int32_t * vectorInt, int16_t *vectorOut, uint32_t longitud)
 			vectorOut[i]=vectorInt[i]>>16;
 		}
 }
+void c_filtroVentana10(uint16_t * vectorIn, uint16_t * vectorOut, uint32_t longitudVectorIn)
+{
+	    uint32_t acumulador = 0;
+
+		for(uint32_t i = 0; i < longitudVectorIn; i++)
+		{
+		    uint16_t longitud = (longitudVectorIn - i);
+
+		    if(longitud > 10)
+		    {
+		        longitud = 10;
+		    }
+
+			for(uint32_t j = 0;j < longitud; j++)
+	        {
+	            acumulador = acumulador + vectorIn[i+j];
+	        }
+
+	        vectorOut[i] = acumulador/10;
+	        acumulador = 0;
+		}
+}
+
+
 
