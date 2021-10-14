@@ -116,3 +116,8 @@ y la otra la deja en espera.
 R. Es un timer del nucleo de un microcontrolador que esta orientado a utilizarse como base de tiempo para un sistema operativos de tiempo real.
 Si nosotros diseñamos un sistema operativo tenemos que usar este timer para hacer el sistema mas portable por que este timer es parte del nucleo de los cortex M3/M4/M7.
 
+19.Que funciones cumple la unidad de proteccion de memoria (MPU)?
+
+R. La MPU es la unidad de proteccion de memoria su funcion principal es proteger porciones de memoria de accesos no permitidos, si ocurre esto genera excepciones.
+
+
