@@ -102,3 +102,11 @@ para que asi no se rompa nada del contexto antes del salto, todo esto demora 12 
 16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante? 
 
 R. Lo unico que cambia es que tiene que guardar mas registros y tarda mas tiempo en realizar el staking. 
+
+17. Explique las características avanzadas de atención a interrupciones: tail chaining y late arrival.
+
+R. Tail chaining es utilizda cuando en el handler de la interrupcion de proridad alta ocurre una interrupcion de mas baja prioridad al terminar la primera no vuelve al 
+estado tread sino que continua en el contexto de handler para asi nos ahorrarmos de hacer staking otra ves.
+
+Late arrival se activa cuando el micro esta asiendo el staking de una interrupcion y ocurre otra interrupcion de mayor prioridad lo que hace es atender a esa interrupcion 
+y la otra la deja en espera.
