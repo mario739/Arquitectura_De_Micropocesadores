@@ -124,3 +124,8 @@ R. La MPU es la unidad de proteccion de memoria su funcion principal es proteger
 regiones definidas?
 
 R. Hay 8 reginiones de memoria. Cuando se solapan una a la otra se genera un excepcion de hardfault o memmanage.
+
+21. ¿Para qué se suele utilizar la excepción PendSV? ¿Cómo se relaciona su uso con el resto de las excepciones? Dé un ejemplo
+
+R. Es un interrupción que tiene la mas baja prioridad. Ej Cuando tenemos una interrupcion que demoraria mucho en ejecutarse y esto perjudicaria a las demas por que las 
+demas no podria ejecutarse o tambien se perderia interrucciones lo que se hace es poner todo este proceso en la interrupcion del pendSV.
