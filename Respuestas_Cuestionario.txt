@@ -148,3 +148,8 @@ R. Se utiliza para actualizar los flags de estado. Ej subs
 3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.
 
 R. Cuando se realizan operaciones aritmeticas y se deseamos que este resultado no pase de un valor maximo deseado lo que usa son las instrucciones con saturacion.
+
+4. Describa brevemente la interfaz entre assembler y C ¿Cómo se reciben los argumentos de las funciones? ¿Cómo se devuelve el resultado? ¿Qué registros deben guardarse en la pila antes de ser modificados?
+
+R.Lo que hace el microprocesadaro para hacer la interfaz de C a assembler es utilizar los registros de proposito general para pasar los parametros. Las funciones en assembler resiben sus parametros atraves de los
+registros de proposito general r0,r1,r2,r3 y si se desea devolver un dato se utilizan los registros r0,r1.  Si se desea utilizar los demas registros de r4 en adelante estos se deben guardar en la pila antes de ser modificados.  
