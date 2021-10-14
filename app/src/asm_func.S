@@ -264,6 +264,36 @@
     			bx lr
 
 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@  		asm_eco (uint16_t * vectorIn, uint16_t * vectorOut);
+@
+@ Parametros recibidos:
+@   r0: * vectorInt
+@   r1: * vectorOut
+@ Parametros de función
+@   r2:	logitud del vector
+@	r3:	muestras copiadas
+
+.thumb_func
+		asm_eco:
+			push{r4}
+			mov r2,4096
+			mov r3,886
+		.loop_asm_eco
+
+				subs r4, 886
+ 				__SHADD16 r0,r4
+ 				__UADD16 r0,r4
+
+				subs r2, 1              @ Decrementa la longitud
+          	bne .loop_asm_eco
+          	pop{r4}
+    		bx lr
+
+
+
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
