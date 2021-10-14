@@ -144,3 +144,7 @@ R.Todas las instrucciones tienen sufijos , se utilizan para cambiar la forma de 
 2. ¿Para qué se utiliza el sufijo ‘s’? Dé un ejemplo
 
 R. Se utiliza para actualizar los flags de estado. Ej subs 
+
+3. ¿Qué utilidad tiene la implementación de instrucciones de aritmética saturada? Dé un ejemplo con operaciones con datos de 8 bits.
+
+R. Cuando se realizan operaciones aritmeticas y se deseamos que este resultado no pase de un valor maximo deseado lo que usa son las instrucciones con saturacion.
