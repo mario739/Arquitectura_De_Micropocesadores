@@ -134,3 +134,9 @@ demas no podria ejecutarse o tambien se perderia interrucciones lo que se hace e
 
 R. SVC es un excepción generada por software. Se utiliza en los sistemas operativos para poder salir de modo no privilegiado, por que sino no habria forma de volver al modo privilegiado si no es atraves de la 
 interrupcion por software.
+
+ISA
+
+1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo
+
+R.Todas las instrucciones tienen sufijos , se utilizan para cambiar la forma de operar las instrucciones. Ej ldrh para cargar una variable de 16bits sin signo a un registro de 32 bits.
