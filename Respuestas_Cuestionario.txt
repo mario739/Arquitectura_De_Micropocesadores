@@ -93,3 +93,8 @@ poniendo el menor valor a la mas prioritaria. Cuando hay dos interrupciones de l
 14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta?
 
 R. CMSIS es un capa de abstraccion de hardware que facilita la migracion de codigo. CMSIS es de ARM pero esta implementada una parte por ARM y otra por el fabricante del micro.
+
+15. Cuando ocurre una interrupción, asumiendo que está habilitada ¿Cómo opera el microprocesador para atender a la subrutina correspondiente? Explique con un ejemplo
+
+R. Lo que hace es el stacking, guarda todo lo necesario del contexto actual como ser registros para saltar a otro contexto y que al volver todo se restaure como antes del salto 
+para que asi no se rompa nada del contexto antes del salto, todo esto demora 12 cilos.
