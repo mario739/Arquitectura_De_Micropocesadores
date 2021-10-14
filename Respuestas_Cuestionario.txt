@@ -129,3 +129,8 @@ R. Hay 8 reginiones de memoria. Cuando se solapan una a la otra se genera un exc
 
 R. Es un interrupción que tiene la mas baja prioridad. Ej Cuando tenemos una interrupcion que demoraria mucho en ejecutarse y esto perjudicaria a las demas por que las 
 demas no podria ejecutarse o tambien se perderia interrucciones lo que se hace es poner todo este proceso en la interrupcion del pendSV.
+
+22. ¿Para qué se suele utilizar la excepción SVC? Expliquelo dentro de un marco de un sistema operativo embebido.
+
+R. SVC es un excepción generada por software. Se utiliza en los sistemas operativos para poder salir de modo no privilegiado, por que sino no habria forma de volver al modo privilegiado si no es atraves de la 
+interrupcion por software.
