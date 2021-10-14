@@ -153,3 +153,7 @@ R. Cuando se realizan operaciones aritmeticas y se deseamos que este resultado n
 
 R.Lo que hace el microprocesadaro para hacer la interfaz de C a assembler es utilizar los registros de proposito general para pasar los parametros. Las funciones en assembler resiben sus parametros atraves de los
 registros de proposito general r0,r1,r2,r3 y si se desea devolver un dato se utilizan los registros r0,r1.  Si se desea utilizar los demas registros de r4 en adelante estos se deben guardar en la pila antes de ser modificados.  
+
+5. ¿Qué es una instrucción SIMD? ¿En qué se aplican y que ventajas reporta su uso? Dé un ejemplo.
+
+R. Es una instruccion que procesa multiples datos en una operacion, mayormente son utilizados en procesamiento de señales por que son muy rapidas a diferencia de las demas instrucciones.
