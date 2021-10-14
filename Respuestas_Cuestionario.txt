@@ -98,3 +98,7 @@ R. CMSIS es un capa de abstraccion de hardware que facilita la migracion de codi
 
 R. Lo que hace es el stacking, guarda todo lo necesario del contexto actual como ser registros para saltar a otro contexto y que al volver todo se restaure como antes del salto 
 para que asi no se rompa nada del contexto antes del salto, todo esto demora 12 cilos.
+
+16. ¿Cómo cambia la operación de stacking al utilizar la unidad de punto flotante? 
+
+R. Lo unico que cambia es que tiene que guardar mas registros y tarda mas tiempo en realizar el staking. 
