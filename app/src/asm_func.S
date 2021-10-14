@@ -248,19 +248,19 @@
 @
 .thumb_func
 		asm_max:
-		push {r4-r5}					@ Se guardan los reistros r4 y r5
-			mov r5,r1
-			mov r3,r0
-		.loopasmmax:
- 				ldr r4,[r0],4  		    @ Se carga en r4 lo apuntado por r0
-				cmp r4,r3
-				bge .menor
+			push {r4-r5}				@ Se guardan los reistros r4 y r5
+				mov r5,r1 				@ Se carga en r5 la longitud del vector
 				mov r3,r0
+			.loopasmmax:
+ 				ldr r4,[r0],4  		    @ Se carga en r4 lo apuntado por r0
+				cmp r4,r3				@ Se comparan los registro r4 y r3
+				bge .menor
+				mov r3,r0				@ Se carga en r3 lo del r0
 				mov r2,r1
 		.menor:
 				subs r1, 1              @ Decrementa el contador
           		bne .loopasmmax
-				sub r0, r5, r2              @ Asigna en r0 la posicion
+				sub r0, r5, r2          @ Asigna en r0 la posicion
     		pop	{r4-r5}                 @ Devuelve el contexto
     			bx lr
 
@@ -278,17 +278,17 @@
 
 .thumb_func
 		asm_eco:
-			push {r4-r7}
-			mov r2,10
-			movw r3,2
+			push {r4-r7}		@ Se guardan los registros r4 al r7
+			mov r2,10			@ Cargo al registro r2 la longitud del vector
+			movw r3,2			@ Cargo al registro r3 la longitud del eco
 		.loop_sineco:
-			ldr  r1,[r0],4
-			subs r3,1
+			ldr  r1,[r0],4		@ Se carga en Vo lo del registro vInt
+			subs r3,1			@ Se resta uno al contador
 			bne .loop_sineco
-			sub r2,2
+			sub r2,2			@ Se resta a longitud la logitude del eco
 		.loop_coneco:
-			shadd16 r4, r1, r0
-			str 	r4,[r1], 4
+			shadd16 r4, r1, r0	@ instruccion SIMDE
+			str 	r4,[r1], 4  @ Se guarda el la instruccion de la suma y la division en Vou
 			subs r2,1
 			bne .loop_coneco
           	pop {r4-r7}
