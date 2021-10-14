@@ -241,16 +241,17 @@
 @   r1: longitud
 @ Parametros de función
 @   r2:posicion
+@	r4=
 @	r3:maximo valor
 @   r5: valor maximo del vector
 @
 .thumb_func
 		asm_max:
-		/*	push {r4-r5}
+		push {r4-r5}
 			mov r5,r1
 			mov r3,r0
 		.loopasmmax:
- 				ldr r4,[r0],4  		@ Se carga en r4 lo apuntado por r0
+ 				ldr r4,[r0],4  		    @ Se carga en r4 lo apuntado por r0
 				cmp r4,r3
 				bge .menor
 				mov r3,r0
@@ -261,33 +262,6 @@
 				sub r0, r5, r2              @ Asigna en r0 la posicion
     		pop	{r4-r5}                 @ Devuelve el contexto
     			bx lr
-
-*/
-
-    /*push {r4-r5}                @ Guarda el contexto
-    mov r5, r1                  @ constante del largo del vector
-    mov r3, r1                  @ posicion del maximo
-    ldr r4, [r0],4              @ valor minimo representado
-    sub r1, 1                   @ Decrementa el contador
-    .loop_max:
-        ldr r2, [r0],4          @ Toma el valor del vector de entrada
-        cmp r4, r2              @ Compara r4 con r2
-        bge .no_max             @ Signed Greater Than or Equal
-        mov r3, r1              @ guarda la posicion invertida del maximo
-        mov r4, r2              @ guarda el maximo
-        .no_max:
-        subs r1, 1              @ Decrementa el contador
-        bne .loop_max           @ Vuelve a .loop_max cuando Z es ditinto de cero
-    sub r0, r5, r3              @ Asigna en r0 la posicion
-    pop	{r4-r5}                 @ Devuelve el contexto
-    bx lr                       @ Vuelve adonde fue llamada
-
-*/
-
-
-
-
-
 
 
 
