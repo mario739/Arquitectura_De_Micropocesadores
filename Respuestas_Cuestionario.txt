@@ -50,6 +50,11 @@ primeros modos son igual que el anterior pero el modo no privilegiado lo utiliza
 registros del sistema. Por ejemplos el sistema inicia siempre en modo privilegiado luego el sistema operativo llama al scheduler en modo handler este pone
  al sistema  en modo no privilegiado procesando una tarea  de la cual no se puede volver al modo privilegiado sino es atraves de un interrupción.
 
+7. ¿Qué se entiende por modelo de registros ortogonal? Dé un ejemplo
+
+R. Depende de la arquitectura del microprocesador, cuando todos los registros son de uso general y todos los registros pueden operar con todas las 
+instrucciones se dice que es un modelo ortogonal. 
+
 
 8. ¿Qué ventajas presenta el uso de instrucciones de ejecución condicional (IT)? Dé un ejemplo 
 
@@ -68,6 +73,8 @@ de saltar a una funcion y cambiar de contexto, todo esto se hace para no destrui
 
 Lo que hace el microcontrolador cuando se llama a una funcion es utilizar sus registros de propositor general para pasar los parametros a la funcion 
 utilizando los registros r0-r3 tambien guarda la dirreccion de retorno en el registro ldr para poder volver de la funcion de donde se salto.  
+
+
 
 
 12. ¿Qué entiende por “core peripherals”? ¿Qué diferencia existe entre estos y el resto de los periféricos?
