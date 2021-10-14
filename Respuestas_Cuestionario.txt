@@ -85,4 +85,7 @@ las memorias para que el programa pueda utilizarlos.
 R.Los core peripherals son los perifericos del core de ARM (NVIC,Systick,etc),estos son pertenecientes a la IP de ARM Ylos demas perifericos ya son los que adicisionan los fabricantes a su diseño
 de su micrcontrolador por ejemplo UART,SPI,I2C,etc.
 
+13. ¿Cómo se implementan las prioridades de las interrupciones? Dé un ejemplo
 
+R. Para setear las prioridades de las instrucciones existen tiene 3 o 4 bits dependiendo del micro. Las prioridades se asignan de menor a mayor, 
+poniendo el menor valor a la mas prioritaria. Cuando hay dos interrupciones de la misma prioridad ninguna pisa a la otra sino que se encola para que se ejecutada posteriormente. 
