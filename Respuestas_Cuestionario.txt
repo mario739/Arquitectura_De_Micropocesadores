@@ -140,3 +140,7 @@ ISA
 1. ¿Qué son los sufijos y para qué se los utiliza? Dé un ejemplo
 
 R.Todas las instrucciones tienen sufijos , se utilizan para cambiar la forma de operar las instrucciones. Ej ldrh para cargar una variable de 16bits sin signo a un registro de 32 bits.
+
+2. ¿Para qué se utiliza el sufijo ‘s’? Dé un ejemplo
+
+R. Se utiliza para actualizar los flags de estado. Ej subs 
