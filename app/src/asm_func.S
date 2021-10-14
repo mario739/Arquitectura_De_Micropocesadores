@@ -274,26 +274,25 @@
 @   r1: * vectorOut
 @ Parametros de función
 @   r2:	logitud del vector
-@	r3:	muestras copiadas
+@	r3:	eco
 
 .thumb_func
-		/*asm_eco:
-			push{r4}
-			mov r2,4096
-			mov r3,886
-		.loop_asm_eco
-				subs r4, 886
- 				__SHADD16 r0,r4
- 				__UADD16 r0,r4
-
-				subs r2, 1              @ Decrementa la longitud
-          	bne .loop_asm_eco
-          	pop{r4}
+		asm_eco:
+			push {r4-r7}
+			mov r2,10
+			movw r3,2
+		.loop_sineco:
+			ldr  r1,[r0],4
+			subs r3,1
+			bne .loop_sineco
+			sub r2,2
+		.loop_coneco:
+			shadd16 r4, r1, r0
+			str 	r4,[r1], 4
+			subs r2,1
+			bne .loop_coneco
+          	pop {r4-r7}
     		bx lr
-*/
-
-
-
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
