@@ -110,3 +110,9 @@ estado tread sino que continua en el contexto de handler para asi nos ahorrarmos
 
 Late arrival se activa cuando el micro esta asiendo el staking de una interrupcion y ocurre otra interrupcion de mayor prioridad lo que hace es atender a esa interrupcion 
 y la otra la deja en espera.
+
+18. ¿Qué es el systick? ¿Por qué puede afirmarse que su implementación favorece la portabilidad de los sistemas operativos embebidos?
+
+R. Es un timer del nucleo de un microcontrolador que esta orientado a utilizarse como base de tiempo para un sistema operativos de tiempo real.
+Si nosotros diseñamos un sistema operativo tenemos que usar este timer para hacer el sistema mas portable por que este timer es parte del nucleo de los cortex M3/M4/M7.
+
