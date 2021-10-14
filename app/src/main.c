@@ -199,6 +199,13 @@ static void PosicionMaximo(void)
 
 }
 
+static void Eco()
+{
+	uint16_t c_vectorInt[10]={10,8,6,4,2,2,4,6,8,10};
+	uint16_t c_vectorOut[10]={0,0,0,0,0,0,0,0,0,0};
+	c_eco (c_vectorInt, c_vectorOut);
+}
+
 
 
 // Segun la configuracion realizada en Inicio(), este handler de interrupcion
@@ -331,12 +338,12 @@ int main (void)
 {
     Inicio ();
     //Zeros();
-    ProductoEscalar32();
+   // ProductoEscalar32();
     //ProductoEscalar16();
     //ProductoEscalarConSaturacion12();
    // Empaquetar32a16();
     //filtroVentana10();
-
+    Eco();
     //PosicionMaximo();
     //Suma ();
 

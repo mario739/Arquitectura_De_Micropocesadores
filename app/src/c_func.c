@@ -98,5 +98,21 @@ int32_t c_max (int32_t * vectorInt, uint32_t longitud)
 
 }
 
+void c_eco (uint16_t *vectorInt, uint16_t *vectorOut)
+{
+	for(uint32_t i=0 ;i<4095; i++)
+	{
+		if(i<882)
+		{
+			vectorOut[i]=vectorInt[i];
+		}
+		else
+		{
+			vectorOut[i]=vectorInt[i]+(vectorInt[i-882])/2;
+		}
+	}
+
+
+}
 
 

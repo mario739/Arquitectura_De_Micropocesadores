@@ -13,6 +13,7 @@
 .global asm_productoEscalar12_FS
 .global asm_pack32to16
 .global asm_max
+.global asm_eco
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   uint32_t asmSum (uint32_t firstOperand, uint32_t secondOperand)
@@ -247,7 +248,7 @@
 @
 .thumb_func
 		asm_max:
-		push {r4-r5}
+		push {r4-r5}					@ Se guardan los reistros r4 y r5
 			mov r5,r1
 			mov r3,r0
 		.loopasmmax:
@@ -276,12 +277,11 @@
 @	r3:	muestras copiadas
 
 .thumb_func
-		asm_eco:
+		/*asm_eco:
 			push{r4}
 			mov r2,4096
 			mov r3,886
 		.loop_asm_eco
-
 				subs r4, 886
  				__SHADD16 r0,r4
  				__UADD16 r0,r4
@@ -290,7 +290,7 @@
           	bne .loop_asm_eco
           	pop{r4}
     		bx lr
-
+*/
 
 
 
