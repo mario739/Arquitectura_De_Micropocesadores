@@ -89,3 +89,7 @@ de su micrcontrolador por ejemplo UART,SPI,I2C,etc.
 
 R. Para setear las prioridades de las instrucciones existen tiene 3 o 4 bits dependiendo del micro. Las prioridades se asignan de menor a mayor, 
 poniendo el menor valor a la mas prioritaria. Cuando hay dos interrupciones de la misma prioridad ninguna pisa a la otra sino que se encola para que se ejecutada posteriormente. 
+
+14. ¿Qué es el CMSIS? ¿Qué función cumple? ¿Quién lo provee? ¿Qué ventajas aporta?
+
+R. CMSIS es un capa de abstraccion de hardware que facilita la migracion de codigo. CMSIS es de ARM pero esta implementada una parte por ARM y otra por el fabricante del micro.
