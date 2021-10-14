@@ -120,4 +120,7 @@ Si nosotros diseñamos un sistema operativo tenemos que usar este timer para hac
 
 R. La MPU es la unidad de proteccion de memoria su funcion principal es proteger porciones de memoria de accesos no permitidos, si ocurre esto genera excepciones.
 
+20. ¿Cuántas regiones pueden configurarse como máximo? ¿Qué ocurre en caso de haber solapamientos de las regiones? ¿Qué ocurre con las zonas de memoria no cubiertas por las
+regiones definidas?
 
+R. Hay 8 reginiones de memoria. Cuando se solapan una a la otra se genera un excepcion de hardfault o memmanage.
