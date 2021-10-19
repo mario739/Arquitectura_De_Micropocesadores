@@ -98,6 +98,23 @@ int32_t c_max (int32_t * vectorInt, uint32_t longitud)
 
 }
 
+void c_invertir (uint16_t * vector, uint32_t longitud)
+{
+		uint16_t vectorAuxiliar[longitud];
+		for(uint32_t i=0 ;i< longitud ; i++)
+		{
+			vectorAuxiliar[i]=vector[i];
+		}
+		for(uint32_t i=0 ;i< longitud ; i++)
+		{
+			vector[i]=vectorAuxiliar[longitud-i-1];
+		}
+}
+
+
+
+
+
 void c_eco (uint16_t *vectorInt, uint16_t *vectorOut)
 {
 	for(uint32_t i=0 ;i< 10; i++)

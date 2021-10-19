@@ -199,6 +199,16 @@ static void PosicionMaximo(void)
 
 }
 
+static void Inversion()
+{
+	int16_t c_vectorInt[8]={2,4,6,488,51,56,88,144};
+	uint8_t longitud=8;
+	c_invertir ( c_vectorInt,longitud);
+
+}
+
+
+
 static void Eco()
 {
 	uint16_t c_vectorInt[10]={10,8,6,4,2,2,4,6,8,10};
@@ -347,7 +357,8 @@ int main (void)
     //ProductoEscalarConSaturacion12();
    // Empaquetar32a16();
     //filtroVentana10();
-    Eco();
+    //Eco();
+    Inversion();
     //PosicionMaximo();
     //Suma ();
 
