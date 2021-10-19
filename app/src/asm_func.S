@@ -14,6 +14,7 @@
 .global asm_pack32to16
 .global asm_max
 .global asm_eco
+.global asm_invertir
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 @ Prototipo en "C":
 @   uint32_t asmSum (uint32_t firstOperand, uint32_t secondOperand)
@@ -263,6 +264,40 @@
 				sub r0, r5, r2          @ Asigna en r0 la posicion
     		pop	{r4-r5}                 @ Devuelve el contexto
     			bx lr
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@ Prototipo en "C":
+@   asm_invertir (uint16_t * vector, uint32_t longitud);
+@
+@ Parametros recibidos:
+@   r0: vectorInt
+@   r1: longitud
+@ Parametros de función
+@   r2: registro auxiliar
+@	r3: logitud
+@	r4:
+@	r5:vector auxiliar
+   @ r7 :
+   @r8:
+.thumb_func
+		asm_invertir:
+				push {r4-r8}
+				mov r3,r1
+				mov r7,r0
+				mov r8,r0
+		.loop_bucle_one:
+				ldrh r2,[r8],2
+				strh r2,[r5],2
+				add  r7,2
+				subs r1,1
+			 bne .loop_bucle_one
+		.loop_bucle_dos:
+				ldrh r2,[r7],-2
+		        strh r2,[r0],2
+				subs r3,1              @ Decrementa el contador
+		    bne .loop_bucle_dos              @ Vuelve a .loop_invertir cuando Z es ditinto de cero
+				pop	{r4-r8}                    @ Devuelve el contexto
+				bx lr                       @ Vuelve adonde fue llamada
 
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@

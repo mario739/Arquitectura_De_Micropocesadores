@@ -189,22 +189,38 @@ static void PosicionMaximo(void)
     ResetCycleCounter();
     uint32_t posicion= c_max(c_vectorInt, 8);
     contadordeciclos = GetCycleCounter();
-    sprintf(tramadesalida, "c_filtroVentana10 %d\r\n", contadordeciclos);
+    sprintf(tramadesalida, "c_ maximo %d\r\n", contadordeciclos);
     Board_UARTPutSTR(tramadesalida);
 
 
-
+    ResetCycleCounter();
 	//uint32_t posicion= asm_max(c_vectorInt, 8);
-
+    contadordeciclos = GetCycleCounter();
+        sprintf(tramadesalida, "asm_ maximo %d\r\n", contadordeciclos);
+        Board_UARTPutSTR(tramadesalida);
 
 }
 
 static void Inversion()
 {
 	int16_t c_vectorInt[8]={2,4,6,488,51,56,88,144};
+	int16_t asm_vectorInt[8]={3,5,7,9,10,11,66,77};
 	uint8_t longitud=8;
-	c_invertir ( c_vectorInt,longitud);
+	char tramadesalida[80];
+    uint32_t contadordeciclos=0;
 
+
+	ResetCycleCounter();
+	c_invertir ( c_vectorInt,longitud);
+	contadordeciclos = GetCycleCounter();
+	sprintf(tramadesalida, "c_inversion: %d\r\n", contadordeciclos);
+	Board_UARTPutSTR(tramadesalida);
+
+	ResetCycleCounter();
+	asm_invertir ( asm_vectorInt,longitud);
+	contadordeciclos = GetCycleCounter();
+		sprintf(tramadesalida, "asm_inversion: %d\r\n", contadordeciclos);
+		Board_UARTPutSTR(tramadesalida);
 }
 
 
@@ -358,7 +374,7 @@ int main (void)
    // Empaquetar32a16();
     //filtroVentana10();
     //Eco();
-    Inversion();
+    //Inversion();
     //PosicionMaximo();
     //Suma ();
 
